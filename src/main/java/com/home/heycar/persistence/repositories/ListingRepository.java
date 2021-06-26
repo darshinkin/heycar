@@ -1,10 +1,14 @@
 package com.home.heycar.persistence.repositories;
 
-import org.springframework.data.r2dbc.repository.R2dbcRepository;
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.home.heycar.persistence.models.Listing;
 
 @Repository
-public interface ListingRepository extends R2dbcRepository<Listing, Long> {
+public interface ListingRepository extends CrudRepository<Listing, Long> {
+
+    List<Listing> findByListingId_Code_AndListingId_DealerId(String code, String dealerId);
 }

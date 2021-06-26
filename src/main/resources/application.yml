@@ -15,9 +15,11 @@ app:
   api:
     endpoint:
       listing:
+        retrieve:
+          byCodeAndDealer: /v1/listing/{code}/{dealerId}
         upload:
           csv: /v1/upload_csv
-          json: /v1/vehicle_listinigs/{dealer_id}
+          json: /v1/upload_json
         search:
           retrieve_by_dealer: /v1/listing/dealer/{id}
           retrieve_by_dealer_and_code: /v1/listing/dealer/{id_dealer}/code/{id_code}

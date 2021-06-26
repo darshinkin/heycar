@@ -1,5 +1,7 @@
 package com.home.heycar.messages;
 
+import org.springframework.http.HttpStatus;
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -8,5 +10,5 @@ import lombok.Data;
 public class Message {
     private String filename;
     private String message;
-    private String status;
+    private HttpStatus status;
 }

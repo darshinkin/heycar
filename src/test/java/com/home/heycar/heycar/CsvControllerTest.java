@@ -33,7 +33,6 @@ public class CsvControllerTest {
                 .body(BodyInserters.fromMultipartData(multipartBodyBuilder.build()))
                 .exchange()
                 .expectStatus()
-                .isOk()
-                .expectBody();
+                .isOk();
     }
 }

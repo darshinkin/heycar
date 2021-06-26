@@ -1,23 +1,17 @@
-package com.home.heycar.persistence.models;
-
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+package com.home.heycar.modele;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "PHONE")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Listing {
-    @EmbeddedId
-    private ListingId listingId;
+public class ListingCreateRequest {
+
+    private String code;
     private String make;
     private String model;
     private int kW;

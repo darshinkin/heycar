@@ -1,7 +1,7 @@
-drop table if exists PRODUCT;
+drop table if exists LISTING;
 
-create table PRODUCT (
-    id SERIAL PRIMARY KEY,
+create table LISTING (
+--    id SERIAL PRIMARY KEY,
     dealer VARCHAR(255),
     code VARCHAR(255),
     make VARCHAR(255),
