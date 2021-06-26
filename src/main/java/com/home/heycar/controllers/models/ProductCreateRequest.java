@@ -1,4 +1,4 @@
-package com.home.heycar.routers.models;
+package com.home.heycar.controllers.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
