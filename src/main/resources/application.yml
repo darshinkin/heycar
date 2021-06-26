@@ -1,6 +1,11 @@
 spring:
   application:
     name: heycar
+  servlet:
+    multipart:
+      max-file-size: 128KB
+      max-request-size: 128KB
+#      enable: true
 server:
   port: ${DISCOVERED_SERVICE_PORT:8082}
 logging:
@@ -9,6 +14,12 @@ logging:
 app:
   api:
     endpoint:
-      product:
-        retrieve_by_id: /v1/product/{id}
-        create_product: /v1/product
+      listing:
+        upload:
+          csv: /v1/upload_csv
+          json: /v1/vehicle_listinigs/{dealer_id}
+        search:
+          retrieve_by_dealer: /v1/listing/dealer/{id}
+          retrieve_by_dealer_and_code: /v1/listing/dealer/{id_dealer}/code/{id_code}
+storage:
+  location: ./uploads

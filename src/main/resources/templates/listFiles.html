@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<h1>Spring Boot File Upload Example</h1>
+
+<hr/>
+
+<h4>Reactiv Upload Single File:</h4>
+<form method="POST" enctype="multipart/form-data" th:action="@{/v1/upload_csv}">
+    <input type="file" name="file"> <br/><br/>
+    <input name="dealerId" id="dealerId" value="mersedes benz"> <br/><br/>
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
