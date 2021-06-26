@@ -21,11 +21,11 @@ import com.home.heycar.services.ListingService;
 import com.home.heycar.services.csv.ApacheCommonsCsvUtil;
 
 @RestController
-public class CsvController {
+public class ListingController {
 
     private ListingService listingService;
 
-    public CsvController(ListingService listingService) {
+    public ListingController(ListingService listingService) {
         this.listingService = listingService;
     }
 
@@ -75,10 +75,13 @@ public class CsvController {
     @GetMapping(path = "${app.api.endpoint.listing.retrieve.byCodeAndDealer}")
     public Response retrieveListing(@PathVariable String code, @PathVariable String dealerId) {
         return listingService.retrieveListingByCodeAndDealerId(code, dealerId)
-                .map(listing -> Response.builder().messages(List.of(Message.builder()
-                        .message(String.format("Listing with code %s and dealer %s has been found. Listing: {%s}", code, dealerId, listing))
-                        .status(HttpStatus.OK)
-                        .build())).build())
+                .map(listing -> Response.builder()
+                        .messages(List.of(Message.builder()
+                                .message(String.format("Listing with code %s and dealer %s has been found.", code, dealerId))
+                                .status(HttpStatus.OK)
+                                .build()))
+                        .listing(listing)
+                        .build())
                 .orElse(Response.builder().messages(List.of(Message.builder()
                         .message(String.format("Listing with code %s and dealer %s has not been found.", code, dealerId))
                         .status(HttpStatus.NOT_FOUND)

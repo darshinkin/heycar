@@ -13,7 +13,7 @@ import com.home.heycar.HeycarApplication;
 import com.home.heycar.modele.ListingCreateRequest;
 
 @SpringBootTest(classes = HeycarApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class CsvControllerTest {
+public class ListingControllerTest {
 
     @LocalServerPort
     private int port;
@@ -51,5 +51,28 @@ public class CsvControllerTest {
                 .exchange()
                 .expectStatus()
                 .isOk();
+    }
+
+    @Test
+    public void givenListing_whenRequestGetRequestData_thenSuccess() throws Exception {
+        WebTestClient client = WebTestClient.bindToServer()
+                .baseUrl("http://localhost:" + port)
+                .build();
+        client.post()
+                .uri(uriBuilder -> uriBuilder.path("/v1/upload_json")
+                        .queryParam("dealerId", "bmw")
+                        .build())
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromValue(ListingCreateRequest.builder().code("4").make("BMW").build()))
+                .exchange()
+                .expectStatus()
+                .isOk();
+
+        client.get()
+                .uri(uriBuilder -> uriBuilder.path("/v1/listing/4/BMW").build())
+                .exchange()
+                .expectStatus()
+                .isOk()
+                .expectHeader().valueEquals("Content-Type", "application/json");
     }
 }
